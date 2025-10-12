@@ -602,7 +602,7 @@
                         const Vi = g(h_i_matrix[0][0]); // Salida de la red (tanh)
 
                         // Determinar el color de la región basado en la salida
-                        ctx.fillStyle = Vi >= 0 ? "rgba(76, 175, 80, 0.1)" : "rgba(244, 67, 54, 0.1)"; // Verde claro/Rojo claro
+                        ctx.fillStyle = Vi >= 0 ? "rgba(76, 175, 80, 0.5)" : "rgba(244, 67, 54, 0.5)"; // Verde claro/Rojo claro
                         ctx.fillRect(px, py, step_x, step_y);
                     }
                 }
