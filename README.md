@@ -5,6 +5,8 @@ Este proyecto es una herramienta interactiva para explorar el concepto de **sepa
 * 🌐 Visualización en vivo: [GitHub Pages](https://matias-cisnero.github.io/perceptron-visual-demo/)
 * 📁 Repositorio: [matias-cisnero/perceptron-visual](https://github.com/matias-cisnero/perceptron-visual)
 
+![Demo](demo-perceptron.gif)
+
 ---
 
 ## 🔍 ¿Qué hace este proyecto?
