@@ -2,7 +2,7 @@
 
 Este proyecto es una herramienta interactiva para explorar el concepto de **separabilidad lineal** y visualizar la arquitectura y comportamiento de un **perceptrón simple** y un **perceptrón multicapa** (MLP).
 
-* 🌐 Visualización en vivo: [GitHub Pages](https://matias-cisnero.github.io/perceptron-visual/)
+* 🌐 Visualización en vivo: [GitHub Pages](https://matias-cisnero.github.io/perceptron-visual-demo/)
 * 📁 Repositorio: [matias-cisnero/perceptron-visual](https://github.com/matias-cisnero/perceptron-visual)
 
 ---
@@ -39,7 +39,7 @@ Este proyecto es una herramienta interactiva para explorar el concepto de **sepa
 
 Accedé directamente desde:
 
-🔗 [https://matias-cisnero.github.io/perceptron-visual/](https://matias-cisnero.github.io/perceptron-visual/)
+🔗 [https://matias-cisnero.github.io/perceptron-visual/](https://matias-cisnero.github.io/perceptron-visual-demo/)
 
 1. Elegí el dataset: `AND` o `XOR`
 2. Seleccioná el modelo: perceptrón simple o multicapa
