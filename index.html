@@ -578,7 +578,7 @@
                         const input_point = [px, py, 1]; // Añadir sesgo
                         const prediction = signo(dot(input_point, w));
 
-                        ctx.fillStyle = prediction >= 0 ? "rgba(76, 175, 80, 0.1)" : "rgba(244, 67, 54, 0.1)"; // Verde claro/Rojo claro
+                        ctx.fillStyle = prediction >= 0 ? "rgba(76, 175, 80, 0.5)" : "rgba(244, 67, 54, 0.5)"; // Verde claro/Rojo claro
                         ctx.fillRect(px, py, step_x, step_y);
                     }
                 }
