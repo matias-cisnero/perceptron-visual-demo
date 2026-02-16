@@ -1,0 +1,164 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    text-align: center;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 700;
+}
+.controls-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+    max-width: 700px;
+    width: 100%;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+.input-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    text-align: left;
+}
+.input-group select,
+.input-group input[type="number"] {
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: 100%;
+    box-sizing: border-box;
+}
+.input-group select:focus,
+.input-group input[type="number"]:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+    font-weight: 600;
+    width: auto;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 123, 255, 0.3);
+}
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+#resultado {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.9em;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    max-height: 250px;
+    overflow-y: auto;
+    text-align: left;
+    width: 100%;
+    max-width: 700px;
+}
+.visualization-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+canvas {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 400px;
+    height: 400px;
+}
+.perceptron-diagram svg {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    width: 300px;
+    height: 200px;
+}
+.neuron {
+    stroke: #999;
+    stroke-width: 1;
+    z-index: 2;
+}
+.neuron-label {
+    font-size: 14px;
+    font-weight: bold;
+    fill: #333;
+    pointer-events: none;
+}
+.connection {
+    stroke: #777;
+    stroke-width: 1.5;
+}
+@media (max-width: 768px) {
+    .controls-container {
+        grid-template-columns: 1fr;
+    }
+    .visualization-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    canvas, .perceptron-diagram svg {
+        width: 90%;
+        height: auto;
+    }
+    canvas {
+        max-width: 400px;
+        max-height: 400px;
+    }
+    .perceptron-diagram svg {
+        max-width: 300px;
+        max-height: 200px;
+    }
+}
