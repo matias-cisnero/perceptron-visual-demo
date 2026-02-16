@@ -7,47 +7,61 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Entrenamiento del Perceptrón</h1>
+    <div class="card">
+        <h1>Entrenamiento del Perceptrón</h1>
 
-    <div class="controls-container">
-        <div class="input-group">
-            <label for="modelo">Modelo:</label>
-            <select id="modelo">
-                <option value="simple">Perceptrón Simple</option>
-                <option value="multicapa">Multicapa</option>
-            </select>
+        <div class="main-layout">
+            <div class="config-column"> <div class="inputs-grid">
+                    <div class="input-group">
+                        <label for="modelo">Modelo</label>
+                        <select id="modelo">
+                            <option value="simple">Perceptrón Simple</option>
+                            <option value="multicapa">Multicapa</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="dataset">Dataset</label>
+                        <select id="dataset">
+                            <option value="and">AND</option>
+                            <option value="xor">XOR</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="eta">Tasa (η)</label>
+                        <input type="number" id="eta" step="0.01" value="0.1" />
+                    </div>
+                    <div class="input-group">
+                        <label for="cota">Máx iteraciones</label>
+                        <input type="number" id="cota" value="1000" />
+                    </div>
+                </div>
+                <div class="diagram-area">
+                    <svg id="svg-diagram" viewBox="0 0 300 200"></svg>
+                </div>
+            </div>
+
+            <div class="display-column"> <div class="canvas-area">
+                    <canvas id="grafico" width="300" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="btn-entrenar">Iniciar entrenamiento</button>
+            </div>
+
+            <div class="output-area">
+                <pre id="resultado">Esperando inicio...</pre>
+            </div>
         </div>
 
-        <div class="input-group">
-            <label for="dataset">Selecciona un dataset:</label>
-            <select id="dataset">
-                <option value="and">AND</option>
-                <option value="xor">XOR</option>
-            </select>
-        </div>
-
-        <div class="input-group">
-            <label for="eta">Tasa de aprendizaje (η):</label>
-            <input type="number" id="eta" step="0.01" value="0.1" />
-        </div>
-
-        <div class="input-group">
-            <label for="cota">Cantidad máxima de iteraciones:</label>
-            <input type="number" id="cota" value="1000" /> 
-        </div>
-        
-        <button id="btn-entrenar" onclick="toggleTraining()">Iniciar entrenamiento</button>
+        <footer class="card-footer">
+            <span>Desarrollado por <strong>Matías Cisnero</strong></span>
+            <a href="https://github.com/matias-cisnero/perceptron-visual-demo" target="_blank">Repositorio de GitHub</a>
+        </footer>
     </div>
-
-    <p id="resultado">Resultados del entrenamiento aparecerán aquí.</p>
-
-    <div class="visualization-container">
-        <canvas id="grafico" width="400" height="400"></canvas>
-        <div class="perceptron-diagram">
-            <svg id="svg-diagram" width="300" height="200"></svg>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    
+    <script src="utils.js"></script>
+    <script src="diagram.js"></script>
+    <script src="train.js"></script>
 </body>
 </html>

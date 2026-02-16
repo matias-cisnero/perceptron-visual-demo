@@ -1,164 +1,269 @@
+/* 1. Reset Global */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #f0f2f5;
     color: #333;
-    text-align: center;
-    margin: 30px;
+    margin: 0;
+    
+    /* CAMBIO: Pantalla completa fija */
+    height: 100vh; 
+    overflow: hidden; 
+    
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: clamp(15px, 3vw, 30px); /* Ligeramente reducido para maximizar espacio */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    width: 100%;
+    max-width: 1100px;
+    height: 100%; 
+    
     display: flex;
     flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
 }
+
 h1 {
     color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 2em;
-    font-weight: 700;
-}
-.controls-container {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 0;
     margin-bottom: 20px;
-    
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    font-weight: 700;
+    text-align: center;
+    flex-shrink: 0; 
+}
+
+/* Sistema Grid 2x2 Ajustado para no desbordar */
+.main-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-
-    max-width: 700px;
-    width: 100%;
+    /* La fila 1 es flexible, la fila 2 se ajusta al botón/output */
+    grid-template-rows: minmax(0, 1fr) auto; 
+    gap: 25px;
+    
+    flex: 1;
+    min-height: 0; /* Permite que el grid se encoja */
 }
+
+/* Fila 1: Áreas Superiores */
+.config-column {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 0;
+}
+
+.display-column {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+}
+
+/* Fila 2: Botón y Resultados alineados abajo */
+.actions {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.output-area {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.actions, .output-area {
+    display: flex;
+    align-self: stretch;
+}
+
+button, #resultado {
+    width: 100%;
+    margin: 0;
+}
+
+/* Inputs y Selects */
+.inputs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 5px 0px;
+}
+
 .input-group {
     display: flex;
     flex-direction: column;
 }
+
 .input-group label {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 600;
     color: #555;
-    text-align: left;
+    font-size: 0.85rem;
 }
+
 .input-group select,
 .input-group input[type="number"] {
-    padding: 10px 12px;
+    padding: 8px;
     border: 1px solid #ced4da;
     border-radius: 8px;
-    font-size: 1em;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    font-size: 0.95rem;
     width: 100%;
-    box-sizing: border-box;
 }
-.input-group select:focus,
-.input-group input[type="number"]:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    outline: none;
+
+/* Visualización (SVG y Canvas) */
+.diagram-area, .canvas-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    min-height: 0; /* Vital para que se ajusten al espacio sobrante */
 }
+
+.canvas-area {
+    max-width: 450px; /* Reducido ligeramente para dar aire */
+    aspect-ratio: 1 / 1;
+    margin: 0 auto; 
+}
+
+svg, canvas {
+    max-width: 100%;
+    max-height: 100%; /* No permite que el gráfico empuje la card */
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    object-fit: contain;
+}
+
+/* Resultados (Pre) */
+#resultado {
+    display: block;
+    padding: 12px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size: 0.8rem;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    overflow-y: auto;
+    height: 90px; /* Altura controlada */
+}
+
+/* Botón */
 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
     background-color: #007bff;
     color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
     font-weight: 600;
-    width: auto;
     padding: 12px 25px;
     border: none;
     border-radius: 8px;
-
-    grid-column: 1 / -1;
-    margin-top: 10px;
+    transition: all 0.3s ease;
+    height: 90px; /* Igualamos la altura del output para simetría */
 }
+
 button:hover:not(:disabled) {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
-button:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: 0 1px 3px rgba(0, 123, 255, 0.3);
-}
+
 button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
-    box-shadow: none;
 }
-#resultado {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #e9ecef;
-    border-radius: 8px;
-    white-space: pre-wrap;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 0.9em;
-    color: #495057;
-    border: 1px solid #dee2e6;
-    max-height: 250px;
-    overflow-y: auto;
-    text-align: left;
-    width: 100%;
-    max-width: 700px;
-}
-.visualization-container {
+
+/* SVG Internals */
+.neuron { stroke: #999; stroke-width: 1; }
+.neuron-label { font-size: 14px; font-weight: bold; fill: #333; }
+.connection { stroke: #777; stroke-width: 1.5; }
+
+/* Footer de la tarjeta */
+.card-footer {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    margin-top: 30px;
-    width: 100%;
-    max-width: 900px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px; /* Espacio con el grid superior */
+    padding-top: 10px;
+    border-top: 1px solid #eee; /* Línea sutil divisoria */
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    flex-shrink: 0; /* Asegura que no se aplaste */
 }
-canvas {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    width: 400px;
-    height: 400px;
+
+.card-footer a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
-.perceptron-diagram svg {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    width: 300px;
-    height: 200px;
+
+.card-footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
 }
-.neuron {
-    stroke: #999;
-    stroke-width: 1;
-    z-index: 2;
-}
-.neuron-label {
-    font-size: 14px;
-    font-weight: bold;
-    fill: #333;
-    pointer-events: none;
-}
-.connection {
-    stroke: #777;
-    stroke-width: 1.5;
-}
-@media (max-width: 768px) {
-    .controls-container {
-        grid-template-columns: 1fr;
-    }
-    .visualization-container {
+
+/* Ajuste preventivo para móvil */
+@media (max-width: 850px) {
+    .card-footer {
         flex-direction: column;
-        align-items: center;
-        gap: 20px;
+        gap: 10px;
+        text-align: center;
     }
-    canvas, .perceptron-diagram svg {
-        width: 90%;
+}
+
+/* Responsividad */
+@media (max-width: 850px) {
+    body {
+        height: auto; 
+        overflow-y: auto;
+    }
+    .card {
         height: auto;
     }
-    canvas {
-        max-width: 400px;
-        max-height: 400px;
+
+    .main-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        overflow: visible;
+        gap: 15px;
     }
-    .perceptron-diagram svg {
-        max-width: 300px;
-        max-height: 200px;
+    
+    .config-column, .display-column, .actions, .output-area {
+        grid-column: 1; 
+    }
+    
+    .config-column { grid-row: 1; }
+    .display-column { grid-row: 2; }
+    .actions { grid-row: 3; }
+    .output-area { grid-row: 4; }
+
+    button, #resultado {
+        height: 80px;
+    }
+
+    .diagram-area {
+        display: none;
     }
 }
